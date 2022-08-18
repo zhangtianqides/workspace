@@ -1,20 +1,31 @@
 import React from 'react'
+
+// 引入资源相关
 import logo from '@/assets/logo.png'
 import './index.scss'
 
+// 引入antd相关
 import { Card } from 'antd'
 import { Button, Checkbox, Form, Input, message } from 'antd';
 import FormItem from 'antd/es/form/FormItem';
 
+// 引入store相关
 import useStore from '@/store';
 
+// 引入路由相关
 import { useNavigate } from 'react-router-dom';
 
+
+// Login组件
 export default function Login() {
 
+    // 引入登录的store;
     const { loginStore } = useStore()
+
+    // 设置登录成功后跳转的页面；
     const navigate = new useNavigate()
 
+    // 登录成功后事件绑定
     async function onFinish(values) {
 
         const { mobile, code } = values
@@ -23,12 +34,13 @@ export default function Login() {
         // 跳转到首页
         try {
             message.success('登录成功', 3);
-            navigate('/', { replace: true })
+            navigate('/', { replace: true })   //跳转的时候，不增加历史记录；
         } catch (error) {
-            console.log('密码错误', error);
+            console.log('登录错误@@', error);
         }
     };
 
+    //登录失败
     const onFinishFailed = (errorInfo) => {
         console.log(errorInfo);
     };
@@ -39,7 +51,6 @@ export default function Login() {
                 <img className='login-logo' src={logo} alt="" />
 
                 {/* 子项用的事件，需要在form上声明或引用一下 */}
-                {/*  */}
                 <Form
                     // 表单属性
                     initialValues={{

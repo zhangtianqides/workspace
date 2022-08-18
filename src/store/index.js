@@ -9,6 +9,7 @@ class RootStore {
     }
 }
 
+
 // 实例化操作；
 const rootStore = new RootStore()
 

@@ -4,7 +4,11 @@
 import axios from 'axios'
 
 const http = axios.create({
+
+    //设置访问的基本URL
     baseURL: 'http://geek.itheima.net/v1_0',
+
+    // 设置请求超时的时长；
     timeout: 5000
 })
 

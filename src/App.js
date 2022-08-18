@@ -24,4 +24,5 @@ function App() {
   )
 };
 
+// 从mobx-react-lite中调出，监视数据变化，有变化后更新组件
 export default observer(App);
