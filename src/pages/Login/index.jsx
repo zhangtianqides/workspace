@@ -29,7 +29,7 @@ export default function Login() {
     async function onFinish(values) {
 
         const { mobile, code } = values
-        await loginStore.getTkoke({ mobile, code })
+        await loginStore.getToken({ mobile, code })
 
         // 跳转到首页
         try {

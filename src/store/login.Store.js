@@ -4,19 +4,22 @@
 // 数据信息：组件上存入的token可以在Context上找到（前提是函数式组件）
 
 import { makeAutoObservable } from 'mobx'
-import http from '@/utils/http'
+import { http, getToken, setToken } from '@/utils'
 
 export default class loginStore {
-    token = ''
+    // 先从localstorage取token，取不到则为空串 
+    token = getToken || ''
     constructor() {
         // 数据响应式处理
         makeAutoObservable(this)
     }
 
-    getTkoke = async ({ mobile, code }) => {
+    getToken = async ({ mobile, code }) => {
         // 调用请求接口,将用户的账号和密码传给后端，并将验证结果返回
         const res = await http.post('http://geek.itheima.net/v1_0/authorizations', { mobile, code })
-        // 存入token
+        // 存入token到内存
         this.token = res.data.token
+        // 存入localstorage
+        setToken(this.token)
     }
 }
